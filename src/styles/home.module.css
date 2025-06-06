@@ -1,0 +1,17 @@
+.title {
+    color: rgb(0, 62, 65);
+    font-size: 2rem;
+  }
+  
+  .navbar {
+    background-color: rgb(0, 62, 65);
+    color: white;
+  }
+  
+  .navbar-link {
+    color: white;
+  }
+  
+  .navbar-link:hover {
+    color: rgb(0, 62, 65);
+  }
