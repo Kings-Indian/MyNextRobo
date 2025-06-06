@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from '../styles/home.module.css';
+import Image from 'next/image';
 
 interface DropdownProps {
   title: string;
@@ -59,7 +60,12 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                <span className="text-white">Logo</span>
+                <Image
+                  src="/images/logo.png"
+                  alt="MyNextRobot Logo"
+                  width={48}
+                  height={48}
+                />
               </Link>
             </div>
 
