@@ -12,10 +12,32 @@ interface AssemblyStep {
   components: string[];
 }
 
+interface Material {
+  id: number;
+  name: string;
+  quantity: string;
+  category: string;
+}
+
 export default function Assembly() {
   const [currentStep, setCurrentStep] = useState(1);
   const [isModelLoaded, setIsModelLoaded] = useState(true);
   const [expandedStep, setExpandedStep] = useState<number | null>(1);
+  const [showMaterials, setShowMaterials] = useState(true);
+
+  const materials: Material[] = [
+    { id: 1, name: 'Body Frame', quantity: '1x', category: 'Main Components' },
+    { id: 2, name: 'DC Motors', quantity: '2x', category: 'Main Components' },
+    { id: 3, name: 'Tank Modules', quantity: '2x', category: 'Main Components' },
+    { id: 4, name: 'Battery Holder', quantity: '1x', category: 'Main Components' },
+    { id: 5, name: 'ESP32-S', quantity: '1x', category: 'Electronics' },
+    { id: 6, name: 'L298N Motor Driver', quantity: '1x', category: 'Electronics' },
+    { id: 7, name: 'Step-down Module', quantity: '1x', category: 'Electronics' },
+    { id: 8, name: 'Battery', quantity: '1x', category: 'Electronics' },
+    { id: 9, name: 'M3 Screws (25mm)', quantity: '4x', category: 'Hardware' },
+    { id: 10, name: 'M3 Screws (10mm)', quantity: '8x', category: 'Hardware' },
+    { id: 11, name: 'M3 Screws (5mm)', quantity: '4x', category: 'Hardware' }
+  ];
 
   const assemblySteps: AssemblyStep[] = [
     {
@@ -88,6 +110,82 @@ export default function Assembly() {
           <p className="mt-5 text-xl text-gray-500 dark:text-gray-400">
             Follow our step-by-step guide to assemble your robot
           </p>
+        </div>
+
+        {/* Materials List */}
+        <div className="mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            <button
+              onClick={() => setShowMaterials(!showMaterials)}
+              className="w-full p-6 text-left"
+            >
+              <div className="flex items-start">
+                <div className="flex-shrink-0">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="ml-4 flex-grow">
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                    Required Materials
+                  </h3>
+                  <div className="mt-2 flex items-center justify-between">
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Complete list of components needed for assembly
+                    </p>
+                    <svg
+                      className={`w-6 h-6 transform transition-transform ${
+                        showMaterials ? 'rotate-180' : ''
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </button>
+
+            {showMaterials && (
+              <div className="px-6 pb-6">
+                <div className="mt-4 space-y-4">
+                  {['Main Components', 'Electronics', 'Hardware'].map((category) => (
+                    <div key={category} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                      <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                        {category}
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {materials
+                          .filter((material) => material.category === category)
+                          .map((material) => (
+                            <div
+                              key={material.id}
+                              className="flex items-center justify-between bg-white dark:bg-gray-800 rounded-md p-2 shadow-sm"
+                            >
+                              <span className="text-gray-600 dark:text-gray-400">
+                                {material.name}
+                              </span>
+                              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                                {material.quantity}
+                              </span>
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
