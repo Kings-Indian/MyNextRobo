@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import ThemeToggle from './ThemeToggle';
 
 export default function ThemeProvider({
@@ -8,24 +8,15 @@ export default function ThemeProvider({
 }: {
   children: React.ReactNode;
 }) {
-  useEffect(() => {
-    // Set initial theme
-    const theme = localStorage.getItem('theme') || 'light';
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      document.body.style.backgroundColor = '#1a1a1a';
-      document.body.style.color = '#ffffff';
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.body.style.backgroundColor = '#ffffff';
-      document.body.style.color = '#000000';
-    }
-  }, []);
-
   return (
-    <>
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange={false}
+    >
       {children}
       <ThemeToggle />
-    </>
+    </NextThemesProvider>
   );
 } 

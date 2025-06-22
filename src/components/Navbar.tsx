@@ -20,7 +20,7 @@ const Dropdown = ({ title, items }: DropdownProps) => {
     <div className="relative inline-block">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center px-3 py-2 text-sm font-medium text-white hover:text-gray-200"
+        className="flex items-center px-3 py-2 text-sm font-medium text-primary-foreground hover:text-primary-foreground/80"
       >
         {title}
         <svg
@@ -33,13 +33,13 @@ const Dropdown = ({ title, items }: DropdownProps) => {
         </svg>
       </button>
       {isOpen && (
-        <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+        <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-card ring-1 ring-border">
           <div className="py-1">
             {items.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="block px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground"
               >
                 {item.name}
               </Link>
@@ -53,13 +53,13 @@ const Dropdown = ({ title, items }: DropdownProps) => {
 
 export default function Navbar() {
   return (
-    <nav className={`shadow-md ${styles.navbar}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+    <nav className="w-full bg-primary shadow-md">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-20">
           <div className="flex items-center">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+              <Link href="/" className="w-12 h-12 bg-primary-foreground/10 rounded-full flex items-center justify-center">
                 <Image
                   src="/images/logo.png"
                   alt="MyNextRobot Logo"
@@ -79,7 +79,7 @@ export default function Navbar() {
                   { name: 'Modules', href: '/modules' },
                 ]}
               />
-              <div className="border-l border-white/20 h-6 my-auto mx-2" />
+              <div className="border-l border-primary-foreground/20 h-6 my-auto mx-2" />
               <Dropdown
                 title="Community"
                 items={[
@@ -87,10 +87,10 @@ export default function Navbar() {
                   { name: 'Forums', href: '/community/forums' },
                 ]}
               />
-              <div className="border-l border-white/20 h-6 my-auto mx-2" />
+              <div className="border-l border-primary-foreground/20 h-6 my-auto mx-2" />
               <Link
                 href="/about"
-                className="px-3 py-2 text-sm font-medium text-white hover:text-gray-200"
+                className="px-3 py-2 text-sm font-medium text-primary-foreground hover:text-primary-foreground/80"
               >
                 About
               </Link>
@@ -101,13 +101,13 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             <Link
               href="/dashboard"
-              className="px-4 py-2 text-sm font-medium text-white hover:text-gray-200"
+              className="px-4 py-2 text-sm font-medium text-primary-foreground hover:text-primary-foreground/80"
             >
               Dashboard
             </Link>
             <Link
               href="/signin"
-              className="px-4 py-2 text-sm font-medium bg-white text-[rgb(0,62,65)] rounded-md hover:bg-gray-100"
+              className="px-4 py-2 text-sm font-medium bg-primary-foreground text-primary rounded-md hover:bg-primary-foreground/90"
             >
               Sign in
             </Link>

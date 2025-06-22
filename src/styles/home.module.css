@@ -1,17 +1,18 @@
 .title {
-    color: rgb(0, 62, 65);
+    color: hsl(var(--primary));
     font-size: 2rem;
   }
   
   .navbar {
-    background-color: rgb(0, 62, 65);
-    color: white;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
   
   .navbar-link {
-    color: white;
+    color: hsl(var(--primary-foreground));
   }
   
   .navbar-link:hover {
-    color: rgb(0, 106, 112);
+    color: hsl(var(--accent-foreground));
+    opacity: 0.8;
   }

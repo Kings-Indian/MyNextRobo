@@ -1,53 +1,36 @@
 'use client';
 
+import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState('light');
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
+  // Prevent hydration mismatch by only rendering after mount
   useEffect(() => {
-    // Get initial theme from localStorage or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    setMounted(true);
   }, []);
 
+  // Don't render anything until mounted
+  if (!mounted) {
+    return null;
+  }
+
   const handleThemeChange = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = resolvedTheme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    
-    // Force theme change
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-      document.body.style.backgroundColor = '#1a1a1a';
-      document.body.style.color = '#ffffff';
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.body.style.backgroundColor = '#ffffff';
-      document.body.style.color = '#000000';
-    }
-    
-    // Save to localStorage
-    localStorage.setItem('theme', newTheme);
-    
-    // Log the change
-    console.log('Theme changed to:', newTheme);
-    console.log('Dark class present:', document.documentElement.classList.contains('dark'));
   };
 
   return (
     <button
       onClick={handleThemeChange}
-      className="fixed bottom-4 right-4 p-3 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors z-50 shadow-lg"
-      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      className="fixed bottom-4 right-4 p-3 rounded-full bg-primary hover:bg-primary/80 transition-colors z-50 shadow-lg border border-border"
+      aria-label={`Switch to ${resolvedTheme === 'light' ? 'dark' : 'light'} mode`}
     >
-      {theme === 'light' ? (
+      {resolvedTheme === 'light' ? (
         <svg 
-          className="w-6 h-6 text-gray-800" 
+          className="w-6 h-6 text-primary-foreground" 
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
@@ -58,10 +41,10 @@ export default function ThemeToggle() {
             strokeWidth={2}
             d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
           />
-        </svg>
+        </svg> 
       ) : (
         <svg 
-          className="w-6 h-6 text-yellow-300" 
+          className="w-6 h-6 text-primary-foreground" 
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
