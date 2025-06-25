@@ -4,7 +4,7 @@ import GetStartedSections from '../components/GetStartedSections';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col font-[family-name:var(--font-geist-sans)]">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Navbar />
       <Hero />
       <GetStartedSections />

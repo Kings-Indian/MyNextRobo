@@ -3,7 +3,7 @@
 /* CSS Custom Properties for theming - Mint and Green Theme */
 :root {
   /* Light mode - Fresh mint and green colors */
-  --background: hsl(160, 50%, 98%);
+  --background: hsl(120, 70%, 98%);
   --foreground: hsl(160, 30%, 25%);
   --card: hsl(160, 40%, 96%);
   --card-foreground: hsl(160, 30%, 25%);
@@ -48,32 +48,6 @@
   --radius: 0.5rem;
 }
 
-/* Tailwind CSS v4 theme configuration */
-@theme {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-}
-
 /* Base styles */
 * {
   border-color: hsl(var(--border));
@@ -82,7 +56,7 @@
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: var(--font-sans);
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   line-height: 1.6;
   min-height: 100vh;
 }

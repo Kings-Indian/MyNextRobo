@@ -43,7 +43,7 @@ export default function NewsletterSignup() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
-          className="flex-1 px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-[rgb(0,62,65)]"
+          className="flex-1 px-4 py-2 rounded-full border border-input bg-background text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
           required
           disabled={status === 'loading'}
         />
@@ -51,9 +51,9 @@ export default function NewsletterSignup() {
           type="submit"
           className={`px-6 py-2 rounded-full transition-colors ${
             status === 'loading'
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-[rgb(0,62,65)] hover:bg-[rgb(0,72,75)]'
-          } text-white`}
+              ? 'bg-muted text-muted-foreground cursor-not-allowed'
+              : 'bg-primary hover:bg-primary/80 text-primary-foreground'
+          }`}
           disabled={status === 'loading'}
         >
           {status === 'loading' ? 'Signing up...' : 'Sign Up'}
@@ -65,7 +65,7 @@ export default function NewsletterSignup() {
         </p>
       )}
       {status === 'error' && (
-        <p className="text-red-600 text-sm">
+        <p className="text-destructive text-sm">
           {message || 'Something went wrong. Please try again later.'}
         </p>
       )}

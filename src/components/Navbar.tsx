@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 import styles from '../styles/home.module.css';
 import Image from 'next/image';
-
 interface DropdownProps {
   title: string;
   items: Array<{

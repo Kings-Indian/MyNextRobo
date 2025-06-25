@@ -56,14 +56,14 @@ export default function GetStartedSections() {
 
   return (
     <div className="flex flex-col gap-32 py-16">
-      <nav className="sticky top-0 bg-white/80 backdrop-blur-md z-10 border-b border-gray-200">
+      <nav className="sticky top-0 bg-background/80 backdrop-blur-md z-10 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ul className="flex justify-center space-x-8 h-16">
             {sections.map(({ id, title }) => (
               <li key={id}>
                 <a
                   href={`#${id}`}
-                  className="inline-flex items-center h-full px-2 text-sm font-medium text-gray-700 hover:text-[rgb(0,62,65)] hover:border-b-2 hover:border-[rgb(0,62,65)]"
+                  className="inline-flex items-center h-full px-2 text-sm font-medium text-muted-foreground hover:text-primary hover:border-b-2 hover:border-primary"
                 >
                   {title}
                 </a>
@@ -85,13 +85,13 @@ export default function GetStartedSections() {
             <div className={`flex flex-col gap-6 ${
               index % 2 === 1 ? 'lg:col-start-2' : ''
             }`}>
-              <h2 className="text-3xl font-bold text-[rgb(0,62,65)]">{title}</h2>
-              <p className="text-lg text-gray-600">{description}</p>
-              <button className="self-start px-6 py-2 bg-[rgb(0,62,65)] text-white rounded-full hover:bg-[rgb(0,72,75)] transition-colors">
+              <h2 className="text-3xl font-bold text-primary">{title}</h2>
+              <p className="text-lg text-muted-foreground">{description}</p>
+              <button className="self-start px-6 py-2 bg-primary text-primary-foreground rounded-full hover:bg-primary/80 transition-colors">
                 Learn More
               </button>
             </div>
-            <div className={`aspect-4/3 relative rounded-lg overflow-hidden ${
+            <div className={`aspect-4/3 relative rounded-lg overflow-hidden bg-muted ${
               index % 2 === 1 ? 'lg:col-start-1' : ''
             }`}>
               <Image
